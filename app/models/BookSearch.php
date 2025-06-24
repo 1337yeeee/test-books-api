@@ -5,6 +5,22 @@ namespace app\models;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
+ /**
+ * 
+ * @OA\Schema(
+ *    schema="BookSearch",
+ *    allOf={
+ *        @OA\Schema(ref="#/components/schemas/BookBase"),
+ *        @OA\Schema(
+ *            type="object",
+ *            @OA\Property(
+ *                property="author",
+ *                ref="#/components/schemas/Author"
+ *            )
+ *        )
+ *    }
+ *)
+ */
 class BookSearch extends Book
 {
     const PAGE_SIZE = 20;
@@ -20,7 +36,11 @@ class BookSearch extends Book
         ];
     }
 
-    public function search($params)
+    /**
+     * @param array $params
+     * @return ActiveDataProvider
+     */
+    public function search(array $params)
     {
         $query = Book::find()->with('author');
 

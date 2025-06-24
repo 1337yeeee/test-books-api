@@ -61,6 +61,8 @@ $config = [
                     'controller' => ['books', 'authors'],
                     'pluralize' => true,
                 ],
+                'swagger' => 'swagger/index',
+                'swagger/json' => 'swagger/json',
             ],
         ],
     ],

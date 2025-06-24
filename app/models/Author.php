@@ -13,6 +13,17 @@ use Yii;
  * @property string|null $country
  *
  * @property Books[] $books
+ * 
+ * @OA\Schema(
+ *     schema="Author",
+ *     type="object",
+ *     title="Author",
+ *     required={"name", "birth_year", "country"},
+ *     @OA\Property(property="id", type="integer"),
+ *     @OA\Property(property="name", type="string"),
+ *     @OA\Property(property="birth_year", type="integer"),
+ *     @OA\Property(property="country", type="string")
+ * )
  */
 class Author extends \yii\db\ActiveRecord
 {

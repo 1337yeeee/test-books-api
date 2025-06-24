@@ -5,7 +5,7 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "books".
+ * * This is the model class for table "books".
  *
  * @property int $id
  * @property string $title
@@ -16,15 +16,33 @@ use Yii;
  * @property string|null $description
  *
  * @property Author $author
+ * 
+ * @OA\Schema(
+ *    schema="BookBase",
+ *    type="object",
+ *    title="BookBase",
+ *    required={"title", "pages", "language", "genre"},
+ *    @OA\Property(property="id", type="integer"),
+ *    @OA\Property(property="title", type="string"),
+ *    @OA\Property(property="pages", type="integer"),
+ *    @OA\Property(property="language", type="string"),
+ *    @OA\Property(property="genre", type="string"),
+ *    @OA\Property(property="description", type="string")
+ * )
+ * 
+ * @OA\Schema(
+ *     schema="Book",
+ *     allOf={
+ *        @OA\Schema(ref="#/components/schemas/BookBase"),
+ *        @OA\Schema(
+ *            type="object",
+ *            @OA\Property(property="author_id", type="integer")
+ *        )
+ *    }
+ * )
  */
 class Book extends \yii\db\ActiveRecord
 {
-
-    public function beforeValidate()
-    {
-        \Yii::info('ATTRIBUTES: ' . print_r($this->attributes, true), 'app\debug');
-        return parent::beforeValidate();
-    }
 
     /**
      * {@inheritdoc}
