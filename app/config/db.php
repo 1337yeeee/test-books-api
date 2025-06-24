@@ -6,4 +6,6 @@ return [
     'username' => getenv('DB_USER'),
     'password' => getenv('DB_PASSWORD'),
     'charset' => 'utf8',
+    'enableLogging' => true,
+    'enableProfiling' => true,
 ];

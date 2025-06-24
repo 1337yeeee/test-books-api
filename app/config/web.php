@@ -15,6 +15,9 @@ $config = [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => '0aZQrCWxiXrvnHyHbaUzAjr7Fe37RbTy',
+            'parsers' => [
+                'application/json' => \yii\web\JsonParser::class,
+            ],
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -39,17 +42,27 @@ $config = [
                     'class' => 'yii\log\FileTarget',
                     'levels' => ['error', 'warning'],
                 ],
+                [
+                    'class' => yii\log\FileTarget::class,
+                    'levels' => ['error', 'warning', 'info'],
+                    'categories' => ['yii\db\Command::query'],
+                    'logFile' => '@runtime/logs/queries.log',
+                    'logVars' => [],
+                ],
             ],
         ],
         'db' => $db,
-        /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => ['books', 'authors'],
+                    'pluralize' => true,
+                ],
             ],
         ],
-        */
     ],
     'params' => $params,
 ];
